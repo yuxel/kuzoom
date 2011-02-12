@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Kuzoom :: Image Zoom Plugin For jQuery</title>
+    <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="kuzoom.css" />
+    <script src="kuzoom.js"></script>
+</head>
+<body>
+<style>
+    /** Reset image borders **/
+    img {
+        border: none;
+    }
+
+    /** Page specific styles, please view
+     * kuzzom.css for kuzzom configuration
+     */
+
+    #container {
+        width:960px;
+        margin: 0 auto;
+    }
+
+    /* bottom navigation */
+    #container #navigation {
+        clear: both;
+    }
+
+
+    #container #navigation a{
+        margin-top:10px;
+        width : 100px;
+        text-align:center;
+        float: left;
+        margin-right:10px;
+        cursor: pointer;
+        display : block;
+        border: 1px solid #BBB;
+    }
+
+    #container #content #images {
+        float : left;
+    }
+
+
+    #container #content #texts {
+        float: left;
+        padding-left : 10px ;
+    }
+
+
+    #container #content #texts h1{
+        color: #BBB;
+        margin : 0;
+        padding : 0;
+    }
+
+</style>
+
+<script>
+    $(function () {
+        //define kuzoom options
+        var options = {
+            lensHeight : 100,
+            smallImageHeight : 300,
+            bigImageHeight : 600
+        };
+
+        var itemsToKuzoom = $(".kuzoom a");
+
+        //init plugin with options
+        itemsToKuzoom.kuzoom(options);
+
+        //Handle navigation
+        $(".showItem").click(function (e) {
+            var el = $(this);
+            var itemToShow = el.data("itemToShow");
+            itemsToKuzoom.filter(":visible").fadeOut(function () {
+                itemsToKuzoom.filter("." + itemToShow).fadeIn();
+            });
+        });
+    });
+
+
+</script>
+
+<div id="container">
+    <div id="content">
+        <div id="images">
+            <div class="kuzoom">
+                <!-- 
+                    structre should be like that 
+                    an anchor element, which has an img element in it
+                -->
+                <a href="images/big1.jpg" class="active kuzoom1">
+                    <img src="images/small1.jpg" alt=""/>
+                </a>
+                <a href="images/big2.jpg" class="kuzoom2">
+                    <img src="images/small2.jpg" alt=""/>
+                </a>
+            </div>
+        </div> <!-- #images -->
+
+        <div id="texts">
+            <h1>Kuzoom :: image zoom plugin</h1>
+            <p>
+                Simple image zoom plugin. <br/>
+                Please view source and read comments
+            </p>
+        </div>
+    </div> <!-- #content -->
+
+    <div id="navigation">
+        <a class="showItem" data-itemToShow="kuzoom1">
+            Image 1
+        </a>
+        <a class="showItem" data-itemToShow="kuzoom2">
+            Image 2
+        </a>
+    </div> <!-- #navigation -->
+
+</div> <!-- #container -->
+
+</body>
+</html>
