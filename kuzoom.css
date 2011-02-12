@@ -1,0 +1,60 @@
+.kuzoom {
+    position : relative;
+    /*small images width and height */
+    width : 215px;
+    height : 300px;
+}
+
+.kuzoom a {
+    position : absolute;
+    top:0;
+    display:none;
+}
+
+.kuzoom a.active {
+    display:block;
+}
+
+.kuzoom img {
+    display : block;
+}
+
+.kuzoom:hover .kuzoomLens {
+    display : block;
+}
+
+/**
+ * Visual properties for lens
+ * You can set a background or etc
+ * height will be set by JavaScript
+ */
+.kuzoom .kuzoomLens {
+    display : none;
+    position: absolute;
+    top:0;
+    width:100%;
+    background : #FFF;
+    opacity : 0.3;
+}
+
+.kuzoom:hover .kuzoomWindow {
+    display : block;
+}
+
+/**
+ * The window which you can
+ * see zoomed image
+ * position can be set here
+ */
+.kuzoom .kuzoomWindow {
+    display : none;
+    position : absolute;
+    top: 0;
+    height : 100%;
+    overflow : hidden;
+
+    /*image will be displayed 285px right of small image */
+    margin-left: 215px;
+    /* set big image's width */
+    width : 600px; 
+}
