@@ -6,6 +6,7 @@
 }
 
 .kuzoom a {
+    cursor : crosshair;
     position : absolute;
     top:0;
     display:none;
