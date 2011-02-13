@@ -66,39 +66,40 @@
             var minTopForSmallImage = conf.lensHeight / 2;
             var smallImageHeight = conf.smallImageHeight;
             var bigImageHeight = conf.bigImageHeight;
-            var lensRoute = bigImageHeight - smallImageHeight;
+            var lensRoute = (bigImageHeight + conf.lensHeight) - smallImageHeight;
             var maxTopForSmallImage = smallImageHeight - minTopForSmallImage;
 
             var itemTop = el.offset().top;
 
             el.mousemove(function (e) {
                 var posY = e.pageY - itemTop,
-                    bigTop = 0,
+                    lensTop = 0,
                     ratio = 0;
+
+
 
                 //if lens moves out from top of image
                 if (posY > minTopForSmallImage) {
                     //if moves to bottom
                     if (posY > maxTopForSmallImage) {
-                        ratio = 1;
-                        bigTop = maxTopForSmallImage - minTopForSmallImage;
+                        lensTop = maxTopForSmallImage - minTopForSmallImage;
                     }
                     else {
                         //middle of small image
-                        bigTop = posY - minTopForSmallImage;
-                        ratio = bigTop / smallImageHeight;
+                        lensTop = posY - minTopForSmallImage;
                     }
                 }
                 else {
                     //if lens at top of small image
-                    ratio = 0;
-                    bigTop = 0;
+                    lensTop = 0;
                 }
+
+                ratio = lensTop / smallImageHeight;
 
                 //set margin for big image
                 var bigImageTop = lensRoute * ratio;
                 bigImage.css({"margin-top" : -1 * bigImageTop});
-                lens.css({top : bigTop});
+                lens.css({top : lensTop});
             });
 
         });
