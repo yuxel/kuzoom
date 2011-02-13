@@ -48,6 +48,13 @@
         return bigImage;
     };
 
+    /**
+     * Prevent click event on small image
+     */
+    var onClick = function (e) {
+        e.preventDefault();
+    };
+
     $.fn.kuzoom = function (conf) {
         // setup options
         conf = $.extend(defaultConf, conf);
@@ -57,6 +64,8 @@
 
         elementList.each(function () {
             var el = $(this);
+
+            el.click(onClick);
 
             var lens = createLens(el, conf);
             var zoomWindow = createZoomWindow(el);
